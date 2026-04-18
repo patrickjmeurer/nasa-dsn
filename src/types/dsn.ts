@@ -1,7 +1,37 @@
 export type DSNDishStatus = "active" | "idle" | "maintenance";
 
+export interface DSNSpacecraftMetadata {
+  name: string;
+  friendlyName: string;
+  friendlyAcronym: string;
+  explorerName: string;
+  thumbnail: boolean;
+}
+
+export interface DSNConfiguredDish {
+  name: string;
+  friendlyName: string;
+  type: string;
+  isNew: boolean;
+}
+
+export interface DSNConfiguredStation {
+  name: string;
+  friendlyName: string;
+  longitude: number;
+  latitude: number;
+  dishes: DSNConfiguredDish[];
+}
+
+export interface DSNConfigData {
+  stations: DSNConfiguredStation[];
+  spacecraftMap: Record<string, DSNSpacecraftMetadata>;
+}
+
 export interface DSNDishSnapshot {
   name: string;
+  friendlyName: string;
+  type: string;
   activity: string;
   hasLiveUplink: boolean;
   hasLiveDownlink: boolean;
@@ -11,6 +41,8 @@ export interface DSNDishSnapshot {
 export interface DSNStationSnapshot {
   name: string;
   friendlyName: string;
+  longitude: number;
+  latitude: number;
   dishes: DSNDishSnapshot[];
 }
 
@@ -18,6 +50,7 @@ export interface DSNSnapshot {
   sourceTimestamp: number;
   fetchedAt: number;
   stations: DSNStationSnapshot[];
+  spacecraftMap: Record<string, DSNSpacecraftMetadata>;
 }
 
 export interface StationMeta {

@@ -1,14 +1,40 @@
 import { useEffect, useState } from "react";
+import { mergeSnapshotWithConfig, parseDSNConfigXml } from "../lib/dsnConfig";
 import { parseDSNXml } from "../lib/dsnParser";
 import type { DSNSnapshot } from "../types/dsn";
 
 export const DSN_XML_URL = "https://eyes.nasa.gov/dsn/data/dsn.xml";
+export const DSN_CONFIG_URL = "https://eyes.nasa.gov/apps/dsn-now/config.xml";
 export const DSN_POLL_INTERVAL = 5000;
+
+let dsnConfigPromise: Promise<ReturnType<typeof parseDSNConfigXml>> | undefined;
 
 interface DsnSnapshotState {
   data: DSNSnapshot | null;
   error: Error | null;
   isLoading: boolean;
+}
+
+async function fetchDSNConfig() {
+  const response = await fetch(DSN_CONFIG_URL);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch NASA DSN config XML");
+  }
+
+  const xml = await response.text();
+  return parseDSNConfigXml(xml);
+}
+
+async function getDSNConfig() {
+  if (!dsnConfigPromise) {
+    dsnConfigPromise = fetchDSNConfig().catch((error) => {
+      dsnConfigPromise = undefined;
+      throw error;
+    });
+  }
+
+  return dsnConfigPromise;
 }
 
 export function useDsnSnapshot() {
@@ -23,14 +49,19 @@ export function useDsnSnapshot() {
 
     async function loadSnapshot() {
       try {
-        const response = await fetch(DSN_XML_URL, { cache: "no-store" });
+        const fetchedAt = Date.now();
+        const [config, response] = await Promise.all([
+          getDSNConfig().catch(() => undefined),
+          fetch(DSN_XML_URL, { cache: "no-store" }),
+        ]);
 
         if (!response.ok) {
           throw new Error("Failed to fetch NASA DSN XML");
         }
 
         const xml = await response.text();
-        const data = parseDSNXml(xml, Date.now());
+        const snapshot = parseDSNXml(xml, fetchedAt);
+        const data = config ? mergeSnapshotWithConfig(snapshot, config) : snapshot;
 
         if (!isActive) return;
 

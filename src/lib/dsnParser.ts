@@ -42,6 +42,8 @@ function parseDish(dish: Element): DSNDishSnapshot {
 
   return {
     name: dish.getAttribute("name") || "",
+    friendlyName: dish.getAttribute("friendlyName") || "",
+    type: dish.getAttribute("type") || "",
     activity,
     hasLiveUplink,
     hasLiveDownlink,
@@ -53,6 +55,8 @@ function parseStation(station: Element): DSNStationSnapshot {
   return {
     name: station.getAttribute("name") || "",
     friendlyName: station.getAttribute("friendlyName") || "",
+    longitude: 0,
+    latitude: 0,
     dishes: [],
   };
 }
@@ -95,5 +99,6 @@ export function parseDSNXml(xml: string, fetchedAt = Date.now()): DSNSnapshot {
     sourceTimestamp,
     fetchedAt,
     stations,
+    spacecraftMap: {},
   };
 }

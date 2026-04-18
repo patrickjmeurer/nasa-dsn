@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dsn>
+  <timestamp>1775695006000</timestamp>
+  <station name="mdscc" friendlyName="Madrid"></station>
+  <dish name="DSS63" activity="Maintenance window">
+    <downSignal active="false" signalType="none" spacecraft="EM2"></downSignal>
+  </dish>
+  <dish name="DSS56" activity="Artemis support">
+    <downSignal active="true" signalType="data" spacecraft="EM2"></downSignal>
+  </dish>
+  <station name="gdscc" friendlyName="Goldstone"></station>
+  <dish name="DSS24" activity="Tracking">
+    <downSignal active="true" signalType="data" spacecraft="LUCY"></downSignal>
+  </dish>
+  <station name="cdscc" friendlyName="Canberra"></station>
+  <dish name="DSS34" activity="Tracking">
+    <downSignal active="true" signalType="data" spacecraft="VGR1"></downSignal>
+  </dish>
+</dsn>

@@ -311,6 +311,11 @@
   font-size: 1.1rem;
 }
 
+.station-card__inventory {
+  margin: 1rem 0 0;
+  font-size: 0.92rem;
+}
+
 @media (max-width: 1024px) {
   .app-shell {
     grid-template-columns: 1fr;

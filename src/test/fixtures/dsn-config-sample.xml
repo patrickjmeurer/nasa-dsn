@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <sites>
+    <site name="mdscc" friendlyName="Madrid" longitude="-4.2480085" latitude="40.2413554">
+      <dish name="DSS63" friendlyName="DSS 63" type="70M"></dish>
+      <dish name="DSS65" friendlyName="DSS 65" type="34MHEF"></dish>
+      <dish name="DSS53" friendlyName="DSS 53" type="34M"></dish>
+      <dish name="DSS54" friendlyName="DSS 54" type="34M"></dish>
+      <dish name="DSS55" friendlyName="DSS 55" type="34M"></dish>
+      <dish name="DSS56" friendlyName="DSS 56" type="34M"></dish>
+    </site>
+    <site name="gdscc" friendlyName="Goldstone" longitude="-116.8895382" latitude="35.2443523">
+      <dish name="DSS14" friendlyName="DSS 14" type="70M"></dish>
+      <dish name="DSS24" friendlyName="DSS 24" type="34M"></dish>
+      <dish name="DSS25" friendlyName="DSS 25" type="34M"></dish>
+      <dish name="DSS26" friendlyName="DSS 26" type="34M"></dish>
+    </site>
+    <site name="cdscc" friendlyName="Canberra" longitude="148.9812673" latitude="-35.2209189">
+      <dish name="DSS43" friendlyName="DSS 43" type="70M"></dish>
+      <dish name="DSS34" friendlyName="DSS 34" type="34M"></dish>
+      <dish name="DSS35" friendlyName="DSS 35" type="34M"></dish>
+      <dish name="DSS36" friendlyName="DSS 36" type="34M"></dish>
+    </site>
+  </sites>
+  <spacecraftMap>
+    <spacecraft name="em2" explorerName="" friendlyAcronym="art2" friendlyName="Human Space Flight: Artemis II" thumbnail="true"></spacecraft>
+    <spacecraft name="lucy" explorerName="" friendlyName="Lucy" thumbnail="true"></spacecraft>
+    <spacecraft name="vgr1" explorerName="sc_voyager_1" friendlyName="Voyager 1" thumbnail="true"></spacecraft>
+  </spacecraftMap>
+</config>
